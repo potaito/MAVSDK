@@ -8,6 +8,7 @@
 #include <mavsdk/mavsdk.h>
 #include <mavsdk/plugins/action/action.h>
 #include <mavsdk/plugins/telemetry/telemetry.h>
+#include <mavsdk/plugins/mavlink_passthrough/mavlink_passthrough.h>
 #include <iostream>
 #include <future>
 #include <memory>
@@ -76,6 +77,30 @@ int main(int argc, char** argv)
     }
 
     auto system = fut.get();
+
+
+    mavsdk::MavlinkPassthrough passthrough{system};
+    mavlink_message_t msg;
+    uint8_t severity{2};
+    char string[]{"Hello"};
+    uint8_t chunk_seq{0};
+
+    mavlink_msg_statustext_pack(
+        passthrough.get_our_sysid(),
+        passthrough.get_our_compid(),
+        &msg,
+        severity,
+        string,
+        5001,
+        chunk_seq
+    );
+    chunk_seq++;
+
+    auto res = passthrough.send_message(msg);
+
+    return 0;
+
+
 
     auto telemetry = Telemetry{system};
     auto action = Action{system};

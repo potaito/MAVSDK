@@ -18,6 +18,7 @@ add_executable(takeoff_and_land
 )
 
 target_link_libraries(takeoff_and_land
+    MAVSDK::mavsdk_mavlink_passthrough
     MAVSDK::mavsdk_telemetry
     MAVSDK::mavsdk_action
     MAVSDK::mavsdk
