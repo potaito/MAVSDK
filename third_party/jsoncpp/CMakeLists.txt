@@ -28,9 +28,10 @@ endforeach()
 
 ExternalProject_Add(
     jsoncpp
-    GIT_REPOSITORY https://github.com/open-source-parsers/jsoncpp
-    GIT_TAG 1.8.4
+    GIT_REPOSITORY https://github.com/sergeyrachev/jsoncpp
+    GIT_TAG cmake-config-improvements
+    #GIT_REPOSITORY https://github.com/open-source-parsers/jsoncpp
+    #GIT_TAG 1.8.4
     PREFIX jsoncpp
-    PATCH_COMMAND git checkout . && git apply ${PROJECT_SOURCE_DIR}/fixlibname.patch
     CMAKE_ARGS "${CMAKE_ARGS}"
     )
