@@ -78,8 +78,8 @@ int GrpcServer::run()
     builder.RegisterService(&_info_service);
 #endif
 
-#ifdef LANDING_TARGET_SERVER_ENABLED
-    builder.RegisterService(&_landing_target_server_service);
+#ifdef LANDING_TARGET_ENABLED
+    builder.RegisterService(&_landing_target_service);
 #endif
 
 #ifdef LOG_FILES_ENABLED
@@ -241,8 +241,8 @@ void GrpcServer::stop()
         _info_service.stop();
 #endif
 
-#ifdef LANDING_TARGET_SERVER_ENABLED
-        _landing_target_server_service.stop();
+#ifdef LANDING_TARGET_ENABLED
+        _landing_target_service.stop();
 #endif
 
 #ifdef LOG_FILES_ENABLED

@@ -1,25 +1,42 @@
-#include "landing_target_server_impl.h"
+#include "landing_target_impl.h"
+#include <chrono>
 
 namespace mavsdk {
 
-LandingTargetServerImpl::LandingTargetServerImpl(
-    std::shared_ptr<ServerComponent> server_component) :
-    ServerPluginImplBase(server_component)
+
+LandingTargetImpl::LandingTargetImpl(System& system) : PluginImplBase(system)
 {
-    _server_component_impl->register_plugin(this);
+    _parent->register_plugin(this);
 }
 
-LandingTargetServerImpl::~LandingTargetServerImpl()
+LandingTargetImpl::LandingTargetImpl(std::shared_ptr<System> system) : PluginImplBase(std::move(system))
 {
-    _server_component_impl->unregister_plugin(this);
+    _parent->register_plugin(this);
 }
 
-void LandingTargetServerImpl::init() {}
 
-void LandingTargetServerImpl::deinit() {}
+LandingTargetImpl::~LandingTargetImpl()
+{
 
-LandingTarget::Result
-LandingTargetImpl::publish_landing_target_relative(LandingTarget::Position position)
+    _parent->unregister_plugin(this);
+
+}
+
+void LandingTargetImpl::init() {}
+
+void LandingTargetImpl::deinit() {}
+
+
+void LandingTargetImpl::enable() {}
+
+void LandingTargetImpl::disable() {}
+
+
+
+
+
+
+LandingTarget::Result LandingTargetImpl::publish_position_relative(LandingTarget::PositionLocal position_local)
 {
     uint64_t unix_timestamp = std::chrono::seconds(std::time(NULL)).count();
     float target_num = 0;
@@ -44,9 +61,9 @@ LandingTargetImpl::publish_landing_target_relative(LandingTarget::Position posit
         distance,
         size_x,
         size_y,
-        position.x,
-        position.y,
-        position.z,
+        position_local.x,
+        position_local.y,
+        position_local.z,
         q,
         LANDING_TARGET_TYPE_VISION_OTHER,
         position_valid);
@@ -58,5 +75,7 @@ LandingTargetImpl::publish_landing_target_relative(LandingTarget::Position posit
 
     return LandingTarget::Result::Success;
 }
+
+
 
 } // namespace mavsdk
