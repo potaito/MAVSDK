@@ -84,6 +84,11 @@
 #include "info/info_service_impl.h"
 #endif
 
+#ifdef LANDING_TARGET_SERVER_ENABLED
+#include "plugins/landing_target_server/landing_target_server.h"
+#include "landing_target_server/landing_target_server_service_impl.h"
+#endif
+
 #ifdef LOG_FILES_ENABLED
 #include "plugins/log_files/log_files.h"
 #include "log_files/log_files_service_impl.h"
@@ -250,6 +255,11 @@ public:
 #ifdef INFO_ENABLED
         _info_lazy_plugin(mavsdk),
         _info_service(_info_lazy_plugin),
+#endif
+
+#ifdef LANDING_TARGET_SERVER_ENABLED
+        _landing_target_server_lazy_plugin(mavsdk),
+        _landing_target_server_service(_landing_target_server_lazy_plugin),
 #endif
 
 #ifdef LOG_FILES_ENABLED
@@ -450,6 +460,13 @@ private:
     LazyPlugin<Info> _info_lazy_plugin;
 
     InfoServiceImpl<> _info_service;
+#endif
+
+#ifdef LANDING_TARGET_SERVER_ENABLED
+
+    LazyServerPlugin<LandingTargetServer> _landing_target_server_lazy_plugin;
+
+    LandingTargetServerServiceImpl<> _landing_target_server_service;
 #endif
 
 #ifdef LOG_FILES_ENABLED

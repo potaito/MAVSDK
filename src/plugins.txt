@@ -12,6 +12,7 @@ geofence
 gimbal
 gripper
 info
+landing_target_server
 log_files
 manual_control
 mission
