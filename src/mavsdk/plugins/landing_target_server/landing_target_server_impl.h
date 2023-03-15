@@ -19,6 +19,7 @@ public:
     publish_landing_target_relative(LandingTargetServer::Position position);
 
 private:
+    std::string debug_str = "LandingTargetServer: ";
 };
 
 } // namespace mavsdk
