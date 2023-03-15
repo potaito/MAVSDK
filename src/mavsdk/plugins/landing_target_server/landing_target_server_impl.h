@@ -4,9 +4,7 @@
 
 #include "server_plugin_impl_base.h"
 
-
 namespace mavsdk {
-
 
 class LandingTargetServerImpl : public ServerPluginImplBase {
 public:
@@ -17,13 +15,8 @@ public:
     void init() override;
     void deinit() override;
 
-
-
-
-
-    LandingTargetServer::Result publish_landing_target_relative(LandingTargetServer::Position position);
-
-
+    LandingTargetServer::Result
+    publish_landing_target_relative(LandingTargetServer::Position position);
 
 private:
 };
