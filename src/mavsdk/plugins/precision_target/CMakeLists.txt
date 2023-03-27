@@ -1,7 +1,7 @@
 target_sources(mavsdk
     PRIVATE
-    landing_target.cpp
-    landing_target_impl.cpp
+    precision_target.cpp
+    precision_target_impl.cpp
 )
 
 target_include_directories(mavsdk PUBLIC
@@ -10,6 +10,6 @@ target_include_directories(mavsdk PUBLIC
     )
 
 install(FILES
-    include/plugins/landing_target/landing_target.h
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mavsdk/plugins/landing_target
+    include/plugins/precision_target/precision_target.h
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mavsdk/plugins/precision_target
 )

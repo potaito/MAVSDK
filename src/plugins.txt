@@ -12,7 +12,6 @@ geofence
 gimbal
 gripper
 info
-landing_target
 log_files
 manual_control
 mission
@@ -22,6 +21,7 @@ mocap
 offboard
 param
 param_server
+precision_target
 rtk
 server_utility
 shell

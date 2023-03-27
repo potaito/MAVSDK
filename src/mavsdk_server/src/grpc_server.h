@@ -84,11 +84,6 @@
 #include "info/info_service_impl.h"
 #endif
 
-#ifdef LANDING_TARGET_ENABLED
-#include "plugins/landing_target/landing_target.h"
-#include "landing_target/landing_target_service_impl.h"
-#endif
-
 #ifdef LOG_FILES_ENABLED
 #include "plugins/log_files/log_files.h"
 #include "log_files/log_files_service_impl.h"
@@ -132,6 +127,11 @@
 #ifdef PARAM_SERVER_ENABLED
 #include "plugins/param_server/param_server.h"
 #include "param_server/param_server_service_impl.h"
+#endif
+
+#ifdef PRECISION_TARGET_ENABLED
+#include "plugins/precision_target/precision_target.h"
+#include "precision_target/precision_target_service_impl.h"
 #endif
 
 #ifdef RTK_ENABLED
@@ -257,11 +257,6 @@ public:
         _info_service(_info_lazy_plugin),
 #endif
 
-#ifdef LANDING_TARGET_ENABLED
-        _landing_target_lazy_plugin(mavsdk),
-        _landing_target_service(_landing_target_lazy_plugin),
-#endif
-
 #ifdef LOG_FILES_ENABLED
         _log_files_lazy_plugin(mavsdk),
         _log_files_service(_log_files_lazy_plugin),
@@ -305,6 +300,11 @@ public:
 #ifdef PARAM_SERVER_ENABLED
         _param_server_lazy_plugin(mavsdk),
         _param_server_service(_param_server_lazy_plugin),
+#endif
+
+#ifdef PRECISION_TARGET_ENABLED
+        _precision_target_lazy_plugin(mavsdk),
+        _precision_target_service(_precision_target_lazy_plugin),
 #endif
 
 #ifdef RTK_ENABLED
@@ -462,13 +462,6 @@ private:
     InfoServiceImpl<> _info_service;
 #endif
 
-#ifdef LANDING_TARGET_ENABLED
-
-    LazyPlugin<LandingTarget> _landing_target_lazy_plugin;
-
-    LandingTargetServiceImpl<> _landing_target_service;
-#endif
-
 #ifdef LOG_FILES_ENABLED
 
     LazyPlugin<LogFiles> _log_files_lazy_plugin;
@@ -530,6 +523,13 @@ private:
     LazyServerPlugin<ParamServer> _param_server_lazy_plugin;
 
     ParamServerServiceImpl<> _param_server_service;
+#endif
+
+#ifdef PRECISION_TARGET_ENABLED
+
+    LazyPlugin<PrecisionTarget> _precision_target_lazy_plugin;
+
+    PrecisionTargetServiceImpl<> _precision_target_service;
 #endif
 
 #ifdef RTK_ENABLED

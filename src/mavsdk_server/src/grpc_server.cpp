@@ -78,10 +78,6 @@ int GrpcServer::run()
     builder.RegisterService(&_info_service);
 #endif
 
-#ifdef LANDING_TARGET_ENABLED
-    builder.RegisterService(&_landing_target_service);
-#endif
-
 #ifdef LOG_FILES_ENABLED
     builder.RegisterService(&_log_files_service);
 #endif
@@ -116,6 +112,10 @@ int GrpcServer::run()
 
 #ifdef PARAM_SERVER_ENABLED
     builder.RegisterService(&_param_server_service);
+#endif
+
+#ifdef PRECISION_TARGET_ENABLED
+    builder.RegisterService(&_precision_target_service);
 #endif
 
 #ifdef RTK_ENABLED
@@ -241,10 +241,6 @@ void GrpcServer::stop()
         _info_service.stop();
 #endif
 
-#ifdef LANDING_TARGET_ENABLED
-        _landing_target_service.stop();
-#endif
-
 #ifdef LOG_FILES_ENABLED
         _log_files_service.stop();
 #endif
@@ -279,6 +275,10 @@ void GrpcServer::stop()
 
 #ifdef PARAM_SERVER_ENABLED
         _param_server_service.stop();
+#endif
+
+#ifdef PRECISION_TARGET_ENABLED
+        _precision_target_service.stop();
 #endif
 
 #ifdef RTK_ENABLED

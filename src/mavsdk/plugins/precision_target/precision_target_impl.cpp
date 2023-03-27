@@ -1,42 +1,42 @@
-#include "landing_target_impl.h"
+#include "precision_target_impl.h"
 #include <chrono>
 
 namespace mavsdk {
 
 
-LandingTargetImpl::LandingTargetImpl(System& system) : PluginImplBase(system)
+PrecisionTargetImpl::PrecisionTargetImpl(System& system) : PluginImplBase(system)
 {
     _parent->register_plugin(this);
 }
 
-LandingTargetImpl::LandingTargetImpl(std::shared_ptr<System> system) : PluginImplBase(std::move(system))
+PrecisionTargetImpl::PrecisionTargetImpl(std::shared_ptr<System> system) : PluginImplBase(std::move(system))
 {
     _parent->register_plugin(this);
 }
 
 
-LandingTargetImpl::~LandingTargetImpl()
+PrecisionTargetImpl::~PrecisionTargetImpl()
 {
 
     _parent->unregister_plugin(this);
 
 }
 
-void LandingTargetImpl::init() {}
+void PrecisionTargetImpl::init() {}
 
-void LandingTargetImpl::deinit() {}
-
-
-void LandingTargetImpl::enable() {}
-
-void LandingTargetImpl::disable() {}
+void PrecisionTargetImpl::deinit() {}
 
 
+void PrecisionTargetImpl::enable() {}
+
+void PrecisionTargetImpl::disable() {}
 
 
 
 
-LandingTarget::Result LandingTargetImpl::publish_position_relative(LandingTarget::PositionLocal position_local)
+
+
+PrecisionTarget::Result PrecisionTargetImpl::publish_position_relative(PrecisionTarget::PositionLocal position_local)
 {
     uint64_t unix_timestamp = std::chrono::seconds(std::time(NULL)).count();
     float target_num = 0;
@@ -70,10 +70,10 @@ LandingTarget::Result LandingTargetImpl::publish_position_relative(LandingTarget
 
     if (!_parent->send_message(msg)) {
         LogErr() << debug_str << "publish_landing_target_relative() failed..";
-        return LandingTarget::Result::Unknown;
+        return PrecisionTarget::Result::Unknown;
     }
 
-    return LandingTarget::Result::Success;
+    return PrecisionTarget::Result::Success;
 }
 
 
