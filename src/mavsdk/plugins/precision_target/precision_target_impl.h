@@ -4,9 +4,7 @@
 
 #include "plugin_impl_base.h"
 
-
 namespace mavsdk {
-
 
 class PrecisionTargetImpl : public PluginImplBase {
 public:
@@ -21,11 +19,9 @@ public:
     void enable() override;
     void disable() override;
 
-
-
-    PrecisionTarget::Result publish_position_relative(PrecisionTarget::PositionLocal position_local);
-
-
+    PrecisionTarget::Result publish_position_relative(
+        PrecisionTarget::PositionLocal position_local,
+        PrecisionTarget::ObservationFrame observation_frame);
 
 private:
     std::string debug_str = "PrecisionTargetServer: ";

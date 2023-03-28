@@ -39,7 +39,9 @@ struct PositionLocalDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionLocalDefaultTypeInternal _PositionLocal_default_instance_;
 PROTOBUF_CONSTEXPR PublishPositionRelativeRequest::PublishPositionRelativeRequest(
     ::_pbi::ConstantInitialized)
-  : position_local_(nullptr){}
+  : position_local_(nullptr)
+  , observation_frame_(0)
+{}
 struct PublishPositionRelativeRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PublishPositionRelativeRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -79,7 +81,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace rpc
 }  // namespace mavsdk
 static ::_pb::Metadata file_level_metadata_precision_5ftarget_2fprecision_5ftarget_2eproto[4];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_precision_5ftarget_2fprecision_5ftarget_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_precision_5ftarget_2fprecision_5ftarget_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_precision_5ftarget_2fprecision_5ftarget_2eproto = nullptr;
 
 const uint32_t TableStruct_precision_5ftarget_2fprecision_5ftarget_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -99,6 +101,7 @@ const uint32_t TableStruct_precision_5ftarget_2fprecision_5ftarget_2eproto::offs
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::precision_target::PublishPositionRelativeRequest, position_local_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::precision_target::PublishPositionRelativeRequest, observation_frame_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::precision_target::PublishPositionRelativeResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -118,8 +121,8 @@ const uint32_t TableStruct_precision_5ftarget_2fprecision_5ftarget_2eproto::offs
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::mavsdk::rpc::precision_target::PositionLocal)},
   { 9, -1, -1, sizeof(::mavsdk::rpc::precision_target::PublishPositionRelativeRequest)},
-  { 16, -1, -1, sizeof(::mavsdk::rpc::precision_target::PublishPositionRelativeResponse)},
-  { 23, -1, -1, sizeof(::mavsdk::rpc::precision_target::PrecisionTargetResult)},
+  { 17, -1, -1, sizeof(::mavsdk::rpc::precision_target::PublishPositionRelativeResponse)},
+  { 24, -1, -1, sizeof(::mavsdk::rpc::precision_target::PrecisionTargetResult)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -133,17 +136,21 @@ const char descriptor_table_protodef_precision_5ftarget_2fprecision_5ftarget_2ep
   "\n\'precision_target/precision_target.prot"
   "o\022\033mavsdk.rpc.precision_target\032\024mavsdk_o"
   "ptions.proto\"0\n\rPositionLocal\022\t\n\001x\030\001 \001(\002"
-  "\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\"d\n\036PublishPositio"
-  "nRelativeRequest\022B\n\016position_local\030\001 \001(\013"
-  "2*.mavsdk.rpc.precision_target.PositionL"
-  "ocal\"v\n\037PublishPositionRelativeResponse\022"
-  "S\n\027precision_target_result\030\001 \001(\01322.mavsd"
-  "k.rpc.precision_target.PrecisionTargetRe"
-  "sult\"\276\001\n\025PrecisionTargetResult\022I\n\006result"
-  "\030\001 \001(\01629.mavsdk.rpc.precision_target.Pre"
-  "cisionTargetResult.Result\022\022\n\nresult_str\030"
-  "\002 \001(\t\"F\n\006Result\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016R"
-  "ESULT_SUCCESS\020\001\022\024\n\020RESULT_NO_SYSTEM\020\0022\265\001"
+  "\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\"\256\001\n\036PublishPositi"
+  "onRelativeRequest\022B\n\016position_local\030\001 \001("
+  "\0132*.mavsdk.rpc.precision_target.Position"
+  "Local\022H\n\021observation_frame\030\002 \001(\0162-.mavsd"
+  "k.rpc.precision_target.ObservationFrame\""
+  "v\n\037PublishPositionRelativeResponse\022S\n\027pr"
+  "ecision_target_result\030\001 \001(\01322.mavsdk.rpc"
+  ".precision_target.PrecisionTargetResult\""
+  "\276\001\n\025PrecisionTargetResult\022I\n\006result\030\001 \001("
+  "\01629.mavsdk.rpc.precision_target.Precisio"
+  "nTargetResult.Result\022\022\n\nresult_str\030\002 \001(\t"
+  "\"F\n\006Result\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016RESULT"
+  "_SUCCESS\020\001\022\024\n\020RESULT_NO_SYSTEM\020\002*S\n\020Obse"
+  "rvationFrame\022\037\n\033OBSERVATION_FRAME_LOCAL_"
+  "NED\020\000\022\036\n\032OBSERVATION_FRAME_BODY_FRD\020\0012\265\001"
   "\n\026PrecisionTargetService\022\232\001\n\027PublishPosi"
   "tionRelative\022;.mavsdk.rpc.precision_targ"
   "et.PublishPositionRelativeRequest\032<.mavs"
@@ -157,7 +164,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_precision_5ftarget_
 };
 static ::_pbi::once_flag descriptor_table_precision_5ftarget_2fprecision_5ftarget_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_precision_5ftarget_2fprecision_5ftarget_2eproto = {
-    false, false, 801, descriptor_table_protodef_precision_5ftarget_2fprecision_5ftarget_2eproto,
+    false, false, 961, descriptor_table_protodef_precision_5ftarget_2fprecision_5ftarget_2eproto,
     "precision_target/precision_target.proto",
     &descriptor_table_precision_5ftarget_2fprecision_5ftarget_2eproto_once, descriptor_table_precision_5ftarget_2fprecision_5ftarget_2eproto_deps, 1, 4,
     schemas, file_default_instances, TableStruct_precision_5ftarget_2fprecision_5ftarget_2eproto::offsets,
@@ -196,6 +203,20 @@ constexpr PrecisionTargetResult_Result PrecisionTargetResult::Result_MIN;
 constexpr PrecisionTargetResult_Result PrecisionTargetResult::Result_MAX;
 constexpr int PrecisionTargetResult::Result_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ObservationFrame_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_precision_5ftarget_2fprecision_5ftarget_2eproto);
+  return file_level_enum_descriptors_precision_5ftarget_2fprecision_5ftarget_2eproto[1];
+}
+bool ObservationFrame_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -485,11 +506,15 @@ PublishPositionRelativeRequest::PublishPositionRelativeRequest(const PublishPosi
   } else {
     position_local_ = nullptr;
   }
+  observation_frame_ = from.observation_frame_;
   // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.precision_target.PublishPositionRelativeRequest)
 }
 
 inline void PublishPositionRelativeRequest::SharedCtor() {
-position_local_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&position_local_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&observation_frame_) -
+    reinterpret_cast<char*>(&position_local_)) + sizeof(observation_frame_));
 }
 
 PublishPositionRelativeRequest::~PublishPositionRelativeRequest() {
@@ -520,6 +545,7 @@ void PublishPositionRelativeRequest::Clear() {
     delete position_local_;
   }
   position_local_ = nullptr;
+  observation_frame_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -534,6 +560,15 @@ const char* PublishPositionRelativeRequest::_InternalParse(const char* ptr, ::_p
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_position_local(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .mavsdk.rpc.precision_target.ObservationFrame observation_frame = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_observation_frame(static_cast<::mavsdk::rpc::precision_target::ObservationFrame>(val));
         } else
           goto handle_unusual;
         continue;
@@ -573,6 +608,13 @@ uint8_t* PublishPositionRelativeRequest::_InternalSerialize(
         _Internal::position_local(this).GetCachedSize(), target, stream);
   }
 
+  // .mavsdk.rpc.precision_target.ObservationFrame observation_frame = 2;
+  if (this->_internal_observation_frame() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_observation_frame(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -594,6 +636,12 @@ size_t PublishPositionRelativeRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *position_local_);
+  }
+
+  // .mavsdk.rpc.precision_target.ObservationFrame observation_frame = 2;
+  if (this->_internal_observation_frame() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_observation_frame());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -621,6 +669,9 @@ void PublishPositionRelativeRequest::MergeFrom(const PublishPositionRelativeRequ
   if (from._internal_has_position_local()) {
     _internal_mutable_position_local()->::mavsdk::rpc::precision_target::PositionLocal::MergeFrom(from._internal_position_local());
   }
+  if (from._internal_observation_frame() != 0) {
+    _internal_set_observation_frame(from._internal_observation_frame());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -638,7 +689,12 @@ bool PublishPositionRelativeRequest::IsInitialized() const {
 void PublishPositionRelativeRequest::InternalSwap(PublishPositionRelativeRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(position_local_, other->position_local_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PublishPositionRelativeRequest, observation_frame_)
+      + sizeof(PublishPositionRelativeRequest::observation_frame_)
+      - PROTOBUF_FIELD_OFFSET(PublishPositionRelativeRequest, position_local_)>(
+          reinterpret_cast<char*>(&position_local_),
+          reinterpret_cast<char*>(&other->position_local_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PublishPositionRelativeRequest::GetMetadata() const {

@@ -100,6 +100,31 @@ inline bool PrecisionTargetResult_Result_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PrecisionTargetResult_Result>(
     PrecisionTargetResult_Result_descriptor(), name, value);
 }
+enum ObservationFrame : int {
+  OBSERVATION_FRAME_LOCAL_NED = 0,
+  OBSERVATION_FRAME_BODY_FRD = 1,
+  ObservationFrame_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ObservationFrame_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ObservationFrame_IsValid(int value);
+constexpr ObservationFrame ObservationFrame_MIN = OBSERVATION_FRAME_LOCAL_NED;
+constexpr ObservationFrame ObservationFrame_MAX = OBSERVATION_FRAME_BODY_FRD;
+constexpr int ObservationFrame_ARRAYSIZE = ObservationFrame_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ObservationFrame_descriptor();
+template<typename T>
+inline const std::string& ObservationFrame_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ObservationFrame>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ObservationFrame_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ObservationFrame_descriptor(), enum_t_value);
+}
+inline bool ObservationFrame_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ObservationFrame* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ObservationFrame>(
+    ObservationFrame_descriptor(), name, value);
+}
 // ===================================================================
 
 class PositionLocal final :
@@ -387,6 +412,7 @@ class PublishPositionRelativeRequest final :
 
   enum : int {
     kPositionLocalFieldNumber = 1,
+    kObservationFrameFieldNumber = 2,
   };
   // .mavsdk.rpc.precision_target.PositionLocal position_local = 1;
   bool has_position_local() const;
@@ -406,6 +432,15 @@ class PublishPositionRelativeRequest final :
       ::mavsdk::rpc::precision_target::PositionLocal* position_local);
   ::mavsdk::rpc::precision_target::PositionLocal* unsafe_arena_release_position_local();
 
+  // .mavsdk.rpc.precision_target.ObservationFrame observation_frame = 2;
+  void clear_observation_frame();
+  ::mavsdk::rpc::precision_target::ObservationFrame observation_frame() const;
+  void set_observation_frame(::mavsdk::rpc::precision_target::ObservationFrame value);
+  private:
+  ::mavsdk::rpc::precision_target::ObservationFrame _internal_observation_frame() const;
+  void _internal_set_observation_frame(::mavsdk::rpc::precision_target::ObservationFrame value);
+  public:
+
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.precision_target.PublishPositionRelativeRequest)
  private:
   class _Internal;
@@ -414,6 +449,7 @@ class PublishPositionRelativeRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::mavsdk::rpc::precision_target::PositionLocal* position_local_;
+  int observation_frame_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_precision_5ftarget_2fprecision_5ftarget_2eproto;
 };
@@ -925,6 +961,26 @@ inline void PublishPositionRelativeRequest::set_allocated_position_local(::mavsd
   // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.precision_target.PublishPositionRelativeRequest.position_local)
 }
 
+// .mavsdk.rpc.precision_target.ObservationFrame observation_frame = 2;
+inline void PublishPositionRelativeRequest::clear_observation_frame() {
+  observation_frame_ = 0;
+}
+inline ::mavsdk::rpc::precision_target::ObservationFrame PublishPositionRelativeRequest::_internal_observation_frame() const {
+  return static_cast< ::mavsdk::rpc::precision_target::ObservationFrame >(observation_frame_);
+}
+inline ::mavsdk::rpc::precision_target::ObservationFrame PublishPositionRelativeRequest::observation_frame() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.precision_target.PublishPositionRelativeRequest.observation_frame)
+  return _internal_observation_frame();
+}
+inline void PublishPositionRelativeRequest::_internal_set_observation_frame(::mavsdk::rpc::precision_target::ObservationFrame value) {
+  
+  observation_frame_ = value;
+}
+inline void PublishPositionRelativeRequest::set_observation_frame(::mavsdk::rpc::precision_target::ObservationFrame value) {
+  _internal_set_observation_frame(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.precision_target.PublishPositionRelativeRequest.observation_frame)
+}
+
 // -------------------------------------------------------------------
 
 // PublishPositionRelativeResponse
@@ -1115,6 +1171,11 @@ template <> struct is_proto_enum< ::mavsdk::rpc::precision_target::PrecisionTarg
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mavsdk::rpc::precision_target::PrecisionTargetResult_Result>() {
   return ::mavsdk::rpc::precision_target::PrecisionTargetResult_Result_descriptor();
+}
+template <> struct is_proto_enum< ::mavsdk::rpc::precision_target::ObservationFrame> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mavsdk::rpc::precision_target::ObservationFrame>() {
+  return ::mavsdk::rpc::precision_target::ObservationFrame_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
